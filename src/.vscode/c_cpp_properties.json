@@ -1,0 +1,45 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/ian/catkin_ws/devel/include",
+                "/opt/ros/melodic/include",
+                "/home/ian/catkin_ws/src/calibration/apriltag/apriltag_mit/include",
+                "/home/ian/catkin_ws/src/calibration/apriltag/apriltag_ros/include",
+                "/home/ian/catkin_ws/src/calibration/apriltag/apriltag_umich/include",
+                "/home/ian/catkin_ws/src/calibration/aruco_ros/aruco/include",
+                "/home/ian/catkin_ws/src/calibration/aruco_mapping/include",
+                "/home/ian/catkin_ws/src/calibration/aruco_ros/aruco_ros/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/asio_serial_device/include",
+                "/home/ian/catkin_ws/src/drivers/camera_base/include",
+                "/home/ian/catkin_ws/src/drivers/flea3/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/kquad_interface/include",
+                "/home/ian/catkin_ws/src/calibration/lidar_camera_calibration/include",
+                "/home/ian/catkin_ws/src/calibration/lidar_depth_map/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/mav_manager/include",
+                "/home/ian/catkin_ws/src/calibration/multicam_calibration/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/pid_control/include",
+                "/home/ian/catkin_ws/src/inspection/estimation/pose_utils/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/quad_serial_comm/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/quadrotor_msgs/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/quadrotor_simulator/include",
+                "/home/ian/catkin_ws/src/inspection/estimation/quadrotor_ukf_lite/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/so3_control/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/trackers/std_trackers/include",
+                "/home/ian/catkin_ws/src/inspection/control/quadrotor_control/trackers/trackers_manager/include",
+                "/home/ian/catkin_ws/src/inspection/estimation/tunnel_estimator/include",
+                "/home/ian/catkin_ws/src/inspection/estimation/utils/include",
+                "/home/ian/catkin_ws/src/drivers/velodyne_puck/velodyne_puck_decoder/include",
+                "/home/ian/catkin_ws/src/drivers/velodyne_puck/velodyne_puck_driver/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

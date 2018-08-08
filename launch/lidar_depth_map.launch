@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find flea3)/launch/single_node.launch">
+        <arg name="device" value="16061374"/>
+    </include>
+
+    <!-- rectify -->
+    <node pkg="image_proc" type="image_proc" name="image_proc" output="screen">
+        <remap from="image_raw" to="/pg_16061374/image_raw"/>
+        <remap from="image_rect" to="/pg_16061374/image_rect"/>
+        <remap from="camera_info" to="/pg_16061374/camera_info"/>
+        <remap from="image_mono" to="/pg_16061374/image_mono"/>
+    </node>
+
+    <include file="$(find velodyne_puck_decoder)/launch/velodyne_puck_decoder_nodelet.launch"/>
+
+    <node pkg="lidar_depth_map" type="lidar_depth_map" name="lidar_depth_map" output="screen">
+        <remap from="/lidar_depth_map/image" to="/pg_16061374/image_rect"/>
+        <remap from="/lidar_depth_map/pc" to="/velodyne_point_cloud"/>
+        <remap from="/lidar_depth_map/cam_info" to="/pg_16061374/camera_info"/>
+    </node>
+</launch>

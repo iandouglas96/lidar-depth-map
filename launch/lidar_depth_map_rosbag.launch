@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="bagfile_path" value="/media/ian/ExtHDD/InspectionData/hallway_datasets/hallway_img_lidar_smooth_2018-07-19-17-23-02.bag"/>
+
+    <!--node pkg="rosbag" name="play" type="play" output="screen" args="--quiet --loop  $(arg bagfile_path) --rate=1 --start=0 --duration=150 --clock">
+    </node-->
+
+    <node pkg="lidar_depth_map" type="lidar_depth_map" name="lidar_depth_map" output="screen">
+        <remap from="/lidar_depth_map/image" to="/pg_16061374/image_rect"/>
+        <remap from="/lidar_depth_map/pc" to="/velodyne_point_cloud"/>
+        <remap from="/lidar_depth_map/cam_info" to="/pg_16061374/camera_info"/>
+    </node>
+</launch>
