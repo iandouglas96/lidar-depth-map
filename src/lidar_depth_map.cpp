@@ -46,7 +46,7 @@ void pcCallback(const sensor_msgs::PointCloud2::ConstPtr& msg)
 
         pcl::RangeImagePlanar rangeImage;
         
-        rangeImage.createFromPointCloudWithFixedSize(*pc, 1280/INITIAL_RESOLUTION_SCALE_H, 1024/INITIAL_RESOLUTION_SCALE_V,
+        rangeImage.createFromPointCloudWithFixedSize(*pc, 1224/INITIAL_RESOLUTION_SCALE_H, 1024/INITIAL_RESOLUTION_SCALE_V,
                                         projection(0,2)/INITIAL_RESOLUTION_SCALE_H, projection(1,2)/INITIAL_RESOLUTION_SCALE_V, 
                                         projection(0,0)/INITIAL_RESOLUTION_SCALE_H, projection(1,1)/INITIAL_RESOLUTION_SCALE_V, 
                                         sensorPose, pcl::RangeImagePlanar::LASER_FRAME);
@@ -64,7 +64,7 @@ void pcCallback(const sensor_msgs::PointCloud2::ConstPtr& msg)
 
         //std::cout << rangeImage << "\n";
         cv::Mat image_overlay, image_color, image_grey, image_scaled, inpaint_mask;
-        cv::resize(image,image_scaled,cv::Size(1280, 1024),0,0,INTER_AREA);//resize image
+        cv::resize(image,image_scaled,cv::Size(1224, 1024),0,0,INTER_AREA);//resize image
 
         //Create mask to find holes
         inpaint_mask = cv::Mat::zeros(image_scaled.size(), CV_8UC1);
@@ -83,7 +83,7 @@ void pcCallback(const sensor_msgs::PointCloud2::ConstPtr& msg)
         printf("Inpainting took %f sec\n", ((float)t)/CLOCKS_PER_SEC);
 
         //Format for grayscale display
-        image_scaled.convertTo(image_grey,CV_8UC1, 255 / 3, 0); 
+        image_scaled.convertTo(image_grey,CV_8UC1, 255 / 6, 0); 
         cv::applyColorMap(image_grey, image_color, cv::COLORMAP_JET);
 
         if (haveImage) {
@@ -121,12 +121,13 @@ int main(int argc, char **argv)
 
     //Set up lidar and camera calibration
     //sensorPose.translation() << 0,0,0;
-    sensorPose.translation() << -0.0579167, 0.0585683, 0.0; //Translation matrix
-    //sensorPose.linear().setIdentity();
-    sensorPose.linear() <<  0.999899,   0.0136208,  0.00416754,
-                            -0.0138209, 0.998525,   0.0525113,
-                            -0.00344614,-0.0525636, 0.998612; //Rotation matrix
-    sensorPose.linear() = sensorPose.linear().transpose().eval(); 
+    //sensorPose.translation() << 0.341161,  -0.13896, -0.0614301; //Translation matrix
+    sensorPose.translation() << 0.0796279, -0.011135, 0; //+back, +right, -up, reorder to 1,2,0
+    sensorPose.linear().setIdentity();
+    sensorPose.linear() <<  0.9957,   -0.0573,    0.0726,
+                            0.0566,    0.9983,    0.0117,
+                           -0.0731,   -0.0076,    0.9973; //Rotation matrix
+    //sensorPose.linear() = sensorPose.linear().inverse(); 
     
     //Setup listeners and callbacks
     ros::Subscriber image_sub = n.subscribe("image", 100, imageCallback);
